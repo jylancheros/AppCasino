@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "533797378559",
+    "project_id": "appcasino-576a9",
+    "storage_bucket": "appcasino-576a9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:533797378559:android:90f2d65b7800d8b3ebefca",
+        "android_client_info": {
+          "package_name": "co.edu.unab.tads.appcasino"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "533797378559-j5k1h6mqrl569u1cs4nao0lo7j709gfh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqQTib1n6rBKEa68RzWaI28_1AYtMCOIY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "533797378559-j5k1h6mqrl569u1cs4nao0lo7j709gfh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
