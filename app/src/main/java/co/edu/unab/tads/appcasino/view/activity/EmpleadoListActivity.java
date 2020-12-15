@@ -1,5 +1,6 @@
 package co.edu.unab.tads.appcasino.view.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
@@ -8,7 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +28,30 @@ public class EmpleadoListActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_EMPLEADO_DETAIL = 300;
     private EmpleadoAdapter myAdapter;
     private ActivityEmpleadoListBinding empleadoListBinding;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+
+            case R.id.list_empleados:
+                startActivity(new Intent(EmpleadoListActivity.this,EmpleadoListActivity.class));
+                break;
+            case R.id.mi_cerrar_sesion:
+                FirebaseAuth auth = FirebaseAuth.getInstance();
+                auth.signOut();
+                Intent i = new Intent(EmpleadoListActivity.this, MainActivity.class);
+                startActivity(i);
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
