@@ -30,6 +30,9 @@ public class InicioTempActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
 
+            case R.id.list_empleados:
+                startActivity(new Intent(InicioTempActivity.this,EmpleadoListActivity.class));
+                break;
             case R.id.mi_cerrar_sesion:
                 FirebaseAuth auth = FirebaseAuth.getInstance();
                 auth.signOut();

@@ -1,5 +1,6 @@
 package co.edu.unab.tads.appcasino.model.entity;
 
+import com.google.android.gms.common.server.converter.StringToIntConverter;
 import com.google.firebase.firestore.Exclude;
 import com.google.firebase.firestore.PropertyName;
 
@@ -12,6 +13,8 @@ public class Empleado implements Serializable {
     private String cargo;
     private String telefono;
     private String urlImagen;
+    private String usuarioId;
+    private Usuario usuario;
 
     public Empleado(String eid, String cedula, String nombre, String cargo, String telefono,String urlImagen) {
         this.eid = eid;
@@ -79,5 +82,21 @@ public class Empleado implements Serializable {
     @PropertyName("url_imagen")
     public void setUrlImagen(String urlImagen) {
         this.urlImagen = urlImagen;
+    }
+
+    public String getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(String usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+    @Exclude
+    public Usuario getUsuario() {
+        return usuario;
+    }
+    @Exclude
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

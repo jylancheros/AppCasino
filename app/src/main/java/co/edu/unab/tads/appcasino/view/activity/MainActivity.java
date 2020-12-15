@@ -60,4 +60,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if(auth.getCurrentUser()!= null){
+            Intent i = new Intent(MainActivity.this,InicioTempActivity.class);
+            startActivity(i);
+            finish();
+        }
+    }
 }

@@ -6,4 +6,12 @@
     <string name="txt_crear_cuenta">Crear Cuenta</string>
     <string name="txt_hint_nombre_usuario">Nombre Completo</string>
     <string name="txt_hint_phone_usuario">Teléfono</string>
+    <string name="txt_agregar_empleado">AGREGAR EMPLEADO</string>
+    <string name="txt_btn_editar">Editar</string>
+    <string name="Eliminar">txt_btn_eliminar</string>
+    <string name="txt_btn_eliminar">Eliminar</string>
+    <string name="txt_hint_nombre">Ingrese el nombre del empleado</string>
+    <string name="txt_hint_cargo">Ingrese el cargo</string>
+    <string name="txt_hint_telefono">telefono</string>
+    <string name="txt_hint_cedula">Ingrese la cedula del empleado</string>
 </resources>

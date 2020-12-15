@@ -15,7 +15,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCasino">
-        <activity android:name=".view.activity.RegistroUsuarioActivity"></activity>
+        <activity android:name=".view.activity.EmpleadoFormActivity"></activity>
+        <activity android:name=".view.activity.EmpleadoDetailActivity" />
+        <activity android:name=".item_empleado" />
+        <activity android:name=".view.activity.EmpleadoListActivity" />
+        <activity android:name=".view.activity.RegistroUsuarioActivity" />
         <activity android:name=".view.activity.InicioTempActivity" />
         <activity android:name=".view.activity.MainActivity">
             <intent-filter>
