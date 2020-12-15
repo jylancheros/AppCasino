@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="user"
+            type="co.edu.unab.tads.appcasino.model.entity.Usuario" />
+
+        <variable
+            name="password"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.activity.RegisterActivity">
+
+        <EditText
+            android:id="@+id/et_user_name_from"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="14"
+            android:hint="@string/txt_hint_nombre_usuario"
+            android:text="@={user.nombre}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/et_user_email_from"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="14"
+            android:hint="@string/txt_hint_email"
+            android:text="@={user.email}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_user_name_from" />
+
+        <EditText
+            android:id="@+id/et_user_phone_from"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="14"
+            android:hint="@string/txt_hint_phone_usuario"
+            android:text="@={user.telefono}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_user_email_from" />
+
+        <EditText
+            android:id="@+id/et_user_pass_from"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="14"
+            android:hint="@string/txt_hint_contrasena"
+            android:inputType="textPassword"
+            android:text="@={password}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_user_phone_from" />
+
+        <Button
+            android:id="@+id/bt_register_form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_crear_cuenta"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_user_pass_from"
+            android:layout_marginTop="20dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
