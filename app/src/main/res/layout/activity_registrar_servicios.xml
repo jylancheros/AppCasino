@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.activity.RegistrarServiciosActivity">
+
+        <TextView
+            android:id="@+id/tc_select_Event"
+            android:layout_marginTop="20dp"
+            android:ems="14"
+            android:text="Seleccionar Evento:"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/eventos_spinner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+            android:spinnerMode="dropdown"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tc_select_Event" />
+
+        <EditText
+            android:id="@+id/et_cedula_form"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ems="14"
+            android:hint="@string/txt_hint_cedula"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/eventos_spinner"></EditText>
+
+        <Button
+            android:id="@+id/bt_add_producto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Registrar servicio"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_cedula_form" />
+
+
+        <TextView
+            android:id="@+id/tc_cedula_empleado"
+            android:layout_marginTop="20dp"
+            android:ems="14"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bt_add_producto"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/tc_nombre_empleado"
+            android:layout_marginTop="20dp"
+            android:ems="14"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tc_cedula_empleado"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/tc_fechaHora_registro"
+            android:layout_marginTop="20dp"
+            android:ems="14"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tc_nombre_empleado"
+            android:textAlignment="center"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

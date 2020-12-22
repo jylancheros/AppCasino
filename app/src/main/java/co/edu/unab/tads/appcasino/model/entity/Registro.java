@@ -9,20 +9,18 @@ public class Registro implements Serializable {
     private String rid;
     private Date fecha;
     private String empleadoId;
-    private String eventoId;
     private String usuarioId;
     private Empleado myEmpleado;
-    private Evento myEvento;
+    private String evento;
     private Usuario myUsuario;
 
     public Registro() {
         this.rid = "";
         this.fecha = new Date() ;
         this.empleadoId = "";
-        this.eventoId = "";
         this.usuarioId = "";
         this.myEmpleado = new Empleado();
-        this.myEvento = new Evento();
+        this.evento =  "";
         this.myUsuario = new Usuario();
     }
     @Exclude
@@ -50,13 +48,6 @@ public class Registro implements Serializable {
         this.empleadoId = empleadoId;
     }
 
-    public String getEventoId() {
-        return eventoId;
-    }
-
-    public void setEventoId(String eventoId) {
-        this.eventoId = eventoId;
-    }
 
     public String getUsuarioId() {
         return usuarioId;
@@ -73,14 +64,7 @@ public class Registro implements Serializable {
     public void setMyEmpleado(Empleado myEmpleado) {
         this.myEmpleado = myEmpleado;
     }
-    @Exclude
-    public Evento getMyEvento() {
-        return myEvento;
-    }
-    @Exclude
-    public void setMyEvento(Evento myEvento) {
-        this.myEvento = myEvento;
-    }
+
     @Exclude
     public Usuario getMyUsuario() {
         return myUsuario;
@@ -88,5 +72,13 @@ public class Registro implements Serializable {
     @Exclude
     public void setMyUsuario(Usuario myUsuario) {
         this.myUsuario = myUsuario;
+    }
+
+    public String getEvento() {
+        return evento;
+    }
+
+    public void setEvento(String evento) {
+        this.evento = evento;
     }
 }
