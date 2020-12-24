@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onChanged(Usuario user) {
                         if(user != null){
                             Toast.makeText(MainActivity.this, "Bienvenido", Toast.LENGTH_LONG).show();
-                            Intent myIntent = new Intent(MainActivity.this, EmpleadoListActivity.class);
+                            Intent myIntent = new Intent(MainActivity.this, InicioTempActivity.class);
                             startActivity(myIntent);
                         }else{
                             Toast.makeText(MainActivity.this, "Datos Errados", Toast.LENGTH_LONG).show();
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
         if(auth.getCurrentUser()!= null){
-            Intent i = new Intent(MainActivity.this,EmpleadoListActivity.class);
+            Intent i = new Intent(MainActivity.this,InicioTempActivity.class);
             startActivity(i);
             finish();
         }

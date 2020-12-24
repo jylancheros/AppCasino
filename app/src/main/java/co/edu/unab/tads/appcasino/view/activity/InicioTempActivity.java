@@ -33,6 +33,9 @@ public class InicioTempActivity extends AppCompatActivity {
             case R.id.list_empleados:
                 startActivity(new Intent(InicioTempActivity.this,EmpleadoListActivity.class));
                 break;
+            case R.id.registro:
+                startActivity(new Intent(InicioTempActivity.this,RegistrarServiciosActivity.class));
+                break;
             case R.id.mi_cerrar_sesion:
                 FirebaseAuth auth = FirebaseAuth.getInstance();
                 auth.signOut();
