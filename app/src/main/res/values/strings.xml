@@ -14,4 +14,8 @@
     <string name="txt_hint_cargo">Ingrese el cargo</string>
     <string name="txt_hint_telefono">telefono</string>
     <string name="txt_hint_cedula">Ingrese la cedula del empleado</string>
+    <string name="registros_de_eventos">Registros de eventos</string>
+    <string name="registrar_evento">Registrar evento</string>
+    <string name="appcasino">AppCasino</string>
+    <string name="filtro_fecha">Filtro de Fecha</string>
 </resources>

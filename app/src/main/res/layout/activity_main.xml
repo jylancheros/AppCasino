@@ -77,12 +77,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
-            android:layout_marginTop="50dp"
-            android:background="#710303"
-            android:backgroundTint="#700606"
-            android:shadowColor="#EC1414"
+            android:layout_marginTop="8dp"
             android:text="@string/txt_inicio_sesion"
-            app:iconTint="#EC0000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/et_password" />

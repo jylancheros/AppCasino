@@ -4,38 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-    <variable
-    name="viewModel"
-    type="co.edu.unab.tads.appcasino.viewmodel.EmpleadoListViewModel" />
+        <variable
+            name="viewModel"
+            type="co.edu.unab.tads.appcasino.viewmodel.EventoListViewModel" />
+
+        <variable
+            name="fechaFiltro"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.activity.EmpleadoListActivity">
+        tools:context=".view.activity.EventosListActivity">
 
-        <Button
-            android:id="@+id/bt_to_create_empleado"
-            android:layout_width="0dp"
+        <EditText
+            android:id="@+id/fecha"
+            android:hint="@string/filtro_fecha"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/txt_agregar_empleado"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginTop="0dp"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            android:inputType="date"
+            android:focusable="false"
+            android:text="@={fechaFiltro}"
+            android:clickable="true"
+            android:maxLines="1"
+            tools:ignore="MissingConstraints" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_empleados"
+            android:id="@+id/rv_eventos"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/bt_to_create_empleado"
+            app:layout_constraintTop_toBottomOf="@id/fecha"
             app:layout_constraintBottom_toBottomOf="parent"
             />
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
