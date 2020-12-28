@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,11 @@ public class EventoListViewModel extends AndroidViewModel {
         return registroRepository.getRegistros();
     }
 
-    public void loadRegistros(){
-        registroRepository.loadRegistros();
+    public void loadRegistros(String fecha){
+        try {
+            registroRepository.loadRegistros(fecha);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -7,6 +7,9 @@
         android:id="@+id/registro"
         android:title="Registrar Servicio" />
     <item
+        android:id="@+id/list_registro"
+        android:title="Servicios Registrados" />
+    <item
         android:id="@+id/mi_cerrar_sesion"
         android:title="Cerrar Sesión" />
 </menu>

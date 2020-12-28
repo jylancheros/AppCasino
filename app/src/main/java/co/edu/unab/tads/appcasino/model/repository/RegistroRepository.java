@@ -17,7 +17,10 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Date;
 
@@ -42,7 +45,6 @@ public class RegistroRepository {
         myReference = FirebaseStorage.getInstance().getReference();
         ready = new MutableLiveData<>();
         empleado = new Empleado();
-        loadRegistros();
     }
 
     public void setReady() {
@@ -52,6 +54,7 @@ public class RegistroRepository {
     public LiveData<Boolean> getReady() {
         return ready;
     }
+
     public Empleado getEmpleado() {
         return empleado;
     }
@@ -84,8 +87,13 @@ public class RegistroRepository {
         return registroList;
     }
 
-    public void loadRegistros() {
-        firebaseStore.collection(REGISTRO_COLLECTION).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+    public void loadRegistros(String fecha) throws ParseException {
+        Date fechaI = new SimpleDateFormat("dd/MM/yyyy").parse(fecha);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(fechaI);
+        calendar.add(Calendar.DAY_OF_YEAR, 1);
+        Date fechaF = calendar.getTime();
+        firebaseStore.collection(REGISTRO_COLLECTION).whereGreaterThanOrEqualTo("fecha",fechaI).whereLessThan("fecha",fechaF).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {

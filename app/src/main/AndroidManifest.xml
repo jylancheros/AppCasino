@@ -15,23 +15,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCasino">
-        <activity android:name=".view.activity.RegistrarServiciosActivity">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
+        <activity android:name=".view.activity.RegistrarServiciosActivity"/>
+        <activity android:name=".view.activity.EventosListActivity" />
         <activity android:name=".view.activity.EmpleadoFormActivity" />
         <activity android:name=".view.activity.EmpleadoDetailActivity" />
         <activity android:name=".item_empleado" />
         <activity android:name=".view.activity.EmpleadoListActivity" />
         <activity android:name=".view.activity.RegistroUsuarioActivity" />
-        <activity android:name=".view.activity.InicioTempActivity" />
         <activity android:name=".view.activity.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <provider

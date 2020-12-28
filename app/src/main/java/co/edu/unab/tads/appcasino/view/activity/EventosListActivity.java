@@ -80,15 +80,18 @@ public class EventosListActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        binding.getViewModel().loadRegistros();
+        if(!binding.fecha.getText().toString().isEmpty()) {
+            binding.getViewModel().loadRegistros(binding.fecha.toString());
+        }
     }
 
     private void showDatePickerDialog() {
         DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                final String selectedDate = dayOfMonth + " / " + (month+1) + " / " + year;
+                final String selectedDate = dayOfMonth + "/" + (month+1) + "/" + year;
                 binding.fecha.setText(selectedDate);
+                binding.getViewModel().loadRegistros(selectedDate);
             }
         });
 
@@ -106,9 +109,14 @@ public class EventosListActivity extends AppCompatActivity {
         switch (item.getItemId()){
 
             case R.id.list_empleados:
-                startActivity(new Intent(EventosListActivity.this, EmpleadoListActivity.class));
+                startActivity(new Intent(EventosListActivity.this,EmpleadoListActivity.class));
                 break;
-
+            case R.id.registro:
+                startActivity(new Intent(EventosListActivity.this,RegistrarServiciosActivity.class));
+                break;
+            case R.id.list_registro:
+                startActivity(new Intent(EventosListActivity.this, EventosListActivity.class));
+                break;
             case R.id.mi_cerrar_sesion:
                 FirebaseAuth auth = FirebaseAuth.getInstance();
                 auth.signOut();
