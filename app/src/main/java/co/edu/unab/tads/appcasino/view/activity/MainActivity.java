@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onChanged(Usuario user) {
                         if(user != null){
                             Toast.makeText(MainActivity.this, "Bienvenido", Toast.LENGTH_LONG).show();
-                            Intent myIntent = new Intent(MainActivity.this, MenuPrincipalActivity.class);
+                            Intent myIntent = new Intent(MainActivity.this, EmpleadoListActivity.class);
                             startActivity(myIntent);
                         }else{
                             Toast.makeText(MainActivity.this, "Datos Errados", Toast.LENGTH_LONG).show();
@@ -60,13 +61,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /*@Override
+    @Override
     protected void onStart() {
         super.onStart();
-        if(auth.getCurrentUser()== null){
-            Intent i = new Intent(MainActivity.this, MainActivity.class);
+
+        if(auth.getCurrentUser()!= null){
+            Intent i = new Intent(MainActivity.this,EmpleadoListActivity.class);
             startActivity(i);
             finish();
         }
-    }*/
+    }
 }

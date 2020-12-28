@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -18,7 +19,9 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
+import co.edu.unab.tads.appcasino.model.entity.Empleado;
 import co.edu.unab.tads.appcasino.model.entity.Registro;
 import co.edu.unab.tads.appcasino.model.entity.Usuario;
 
@@ -28,6 +31,7 @@ public class RegistroRepository {
     private MutableLiveData<List<Registro>> registroList;
     private FirebaseFirestore firebaseStore;
     private StorageReference myReference;
+    private Empleado empleado;
     private MutableLiveData<Boolean> ready;
 
     public RegistroRepository(Context context) {
@@ -37,7 +41,43 @@ public class RegistroRepository {
         registroList = new MutableLiveData<>();
         myReference = FirebaseStorage.getInstance().getReference();
         ready = new MutableLiveData<>();
+        empleado = new Empleado();
         loadRegistros();
+    }
+
+    public void setReady() {
+        this.ready.setValue(false);
+    }
+
+    public LiveData<Boolean> getReady() {
+        return ready;
+    }
+    public Empleado getEmpleado() {
+        return empleado;
+    }
+
+    public void addRegistro(String empleadoId, String Evento, Date fechaHora) {
+        Registro registro = new Registro();
+        registro.setUsuarioId(auth.getUid());
+        registro.setEmpleadoId(empleadoId);
+        registro.setEvento(Evento);
+        registro.setFecha(fechaHora);
+        firebaseStore.collection(REGISTRO_COLLECTION).add(registro).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentReference> task) {
+                if (task.isSuccessful()) {
+                    empleado =  new Empleado();
+                    ready.setValue(false);
+                    //empleado.setValue(new Empleado());
+                    return;
+                } else {
+                    Log.e("firestore", task.getException().getMessage());
+                    return;
+                }
+
+            }
+        });
+
     }
 
     public LiveData<List<Registro>> getRegistros() {
@@ -56,15 +96,13 @@ public class RegistroRepository {
                         firebaseStore.collection(UsuarioRepository.USUARIO_COLLECTION).document(myRegister.getUsuarioId()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                if(task.isSuccessful())
-                                {
-                                    Usuario myUser =  task.getResult().toObject(Usuario.class);
+                                if (task.isSuccessful()) {
+                                    Usuario myUser = task.getResult().toObject(Usuario.class);
                                     myUser.setUid(myRegister.getUsuarioId());
                                     myRegister.setMyUsuario(myUser);
                                     list.add(myRegister);
                                     registroList.setValue(list);
-                                }else
-                                {
+                                } else {
                                     Log.e("firestore", task.getException().getMessage());
                                 }
                             }
@@ -72,6 +110,51 @@ public class RegistroRepository {
                     }
                 } else {
                     Log.e("firestore", task.getException().getMessage());
+                }
+            }
+        });
+    }
+
+    //metodo para traer un empleado por la cedula
+    public void loadEmpleadoByCedula(String cedula) {
+        firebaseStore.collection(EmpleadoRepository.EMPLEADO_COLLETION).whereEqualTo("cedula",cedula).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+
+                    if( task.getResult().isEmpty()){
+                        empleado = new Empleado();
+                        ready.setValue(true);
+                        Log.e("yesid", "empleado vacio");
+                        return;
+                    }else
+                    {
+                        for (DocumentSnapshot item : task.getResult().getDocuments()) {
+                            Empleado e = item.toObject(Empleado.class);
+                            e.setEid(item.getId());
+                            firebaseStore.collection(UsuarioRepository.USUARIO_COLLECTION).document(e.getUsuarioId()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        Usuario myUser = task.getResult().toObject(Usuario.class);
+                                        myUser.setUid((e.getUsuarioId()));
+                                        e.setUsuario(myUser);
+                                        empleado = e;
+                                        ready.setValue(true);
+                                        Log.e("yesid", e.getEid());
+                                        return;
+                                    } else {
+                                        Log.e("yesid", task.getException().getMessage());
+                                        return;
+                                    }
+                                }
+                            });
+
+                        }
+                    }
+
+                } else {
+                    Log.e("yesid", task.getException().getMessage());
                 }
             }
         });

@@ -45,7 +45,7 @@
             app:layout_constraintTop_toBottomOf="@id/eventos_spinner"></EditText>
 
         <Button
-            android:id="@+id/bt_add_producto"
+            android:id="@+id/bt_add"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/bt_add_producto"
+            app:layout_constraintTop_toBottomOf="@id/bt_add"
             android:textAlignment="center"/>
 
         <TextView
