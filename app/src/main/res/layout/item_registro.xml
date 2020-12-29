@@ -12,7 +12,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:cardCornerRadius="10dp"
         app:cardElevation="10dp"
         android:layout_margin="8dp">
@@ -28,21 +28,31 @@
                 android:layout_height="wrap_content"
                 android:text="@{myRegister.evento}"
                 android:textAlignment="center"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tc_price_card"
+                android:id="@+id/tc_fecha"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@{myRegister.fecha.toString()}"
+                android:text="@{myRegister.getFechaString()}"
                 android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/evento" />
+
+            <TextView
+                android:id="@+id/tc_nombre_empleado"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{myRegister.myEmpleado.nombre}"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tc_fecha" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

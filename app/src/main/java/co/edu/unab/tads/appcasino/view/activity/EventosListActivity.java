@@ -66,15 +66,6 @@ public class EventosListActivity extends AppCompatActivity {
         binding.rvEventos.setLayoutManager(new LinearLayoutManager(EventosListActivity.this));
         binding.rvEventos.setHasFixedSize(true);
         binding.rvEventos.setAdapter(myAdapter);
-
-        myAdapter.setOnItemClickListener(new RegistroAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Registro myRegister, int position) {
-                Intent myIntent = new Intent(EventosListActivity.this, RegistroDetailActivity.class);
-                myIntent.putExtra("registro", myRegister);
-                startActivityForResult(myIntent, REQUEST_CODE_REGISTER_DETAIL);
-            }
-        });
     }
 
     @Override
@@ -82,6 +73,8 @@ public class EventosListActivity extends AppCompatActivity {
         super.onResume();
         if(!binding.fecha.getText().toString().isEmpty()) {
             binding.getViewModel().loadRegistros(binding.fecha.toString());
+        }else{
+            binding.getViewModel().loadRegistros();
         }
     }
 

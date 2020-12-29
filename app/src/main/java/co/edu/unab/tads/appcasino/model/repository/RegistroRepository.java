@@ -108,8 +108,63 @@ public class RegistroRepository {
                                     Usuario myUser = task.getResult().toObject(Usuario.class);
                                     myUser.setUid(myRegister.getUsuarioId());
                                     myRegister.setMyUsuario(myUser);
-                                    list.add(myRegister);
-                                    registroList.setValue(list);
+                                    firebaseStore.collection(EmpleadoRepository.EMPLEADO_COLLETION).document(myRegister.getEmpleadoId()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                            if (task.isSuccessful()) {
+                                                Empleado myEmpleado = task.getResult().toObject(Empleado.class);
+                                                myEmpleado.setEid(myRegister.getEmpleadoId());
+                                                myRegister.setMyEmpleado(myEmpleado);
+                                                list.add(myRegister);
+                                                registroList.setValue(list);
+                                            }else{
+                                                Log.e("firestore", task.getException().getMessage());
+                                            }
+                                        }
+                                    });
+                                } else {
+                                    Log.e("firestore", task.getException().getMessage());
+                                }
+                            }
+                        });
+                    }
+                } else {
+                    Log.e("firestore", task.getException().getMessage());
+                }
+            }
+        });
+    }
+
+    public void loadRegistros(){
+        firebaseStore.collection(REGISTRO_COLLECTION).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    List<Registro> list = new ArrayList<>();
+                    for (DocumentSnapshot item : task.getResult().getDocuments()) {
+                        Registro myRegister = item.toObject(Registro.class);
+                        myRegister.setRid(item.getId());
+                        firebaseStore.collection(UsuarioRepository.USUARIO_COLLECTION).document(myRegister.getUsuarioId()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    Usuario myUser = task.getResult().toObject(Usuario.class);
+                                    myUser.setUid(myRegister.getUsuarioId());
+                                    myRegister.setMyUsuario(myUser);
+                                    firebaseStore.collection(EmpleadoRepository.EMPLEADO_COLLETION).document(myRegister.getEmpleadoId()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                            if (task.isSuccessful()) {
+                                                Empleado myEmpleado = task.getResult().toObject(Empleado.class);
+                                                myEmpleado.setEid(myRegister.getEmpleadoId());
+                                                myRegister.setMyEmpleado(myEmpleado);
+                                                list.add(myRegister);
+                                                registroList.setValue(list);
+                                            }else{
+                                                Log.e("firestore", task.getException().getMessage());
+                                            }
+                                        }
+                                    });
                                 } else {
                                     Log.e("firestore", task.getException().getMessage());
                                 }

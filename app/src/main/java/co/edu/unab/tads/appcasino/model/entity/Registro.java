@@ -3,6 +3,9 @@ package co.edu.unab.tads.appcasino.model.entity;
 import com.google.firebase.firestore.Exclude;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Registro implements Serializable {
@@ -34,6 +37,15 @@ public class Registro implements Serializable {
 
     public Date getFecha() {
         return fecha;
+    }
+
+    public String getFechaString() {
+        String pattern = "dd/MM/yyyy HH:mm:ss";
+        DateFormat df = new SimpleDateFormat(pattern);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(fecha);
+        Date fec = calendar.getTime();
+        return df.format(fec);
     }
 
     public void setFecha(Date fecha) {

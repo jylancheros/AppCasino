@@ -36,4 +36,8 @@ public class EventoListViewModel extends AndroidViewModel {
             e.printStackTrace();
         }
     }
+
+    public void loadRegistros(){
+        registroRepository.loadRegistros();
+    }
 }
